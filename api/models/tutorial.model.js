@@ -21,7 +21,7 @@ const User = (sequelize, Sequelize) => {
 		},
 		points: {
 			type: Sequelize.INTEGER
-		},
+		}
 	});
 }
 

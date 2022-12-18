@@ -7,6 +7,7 @@ const path = require("path");
 const logger = require("morgan");
 const favicon = require("serve-favicon");
 const cors = require("cors");
+const db = require(path.join(__dirname, 'models', "index.js"));
 
 // Config environment
 dotenv.config();
@@ -19,6 +20,10 @@ const port = process.env.PORT;
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use(logger('dev'))
 app.use(cors());
+
+db.sequelize.sync({ force: true }).then(() => {
+	console.log("Drop and re-sync db.");
+});
 
 // Set up static
 app.use("/", express.static(path.join(__dirname, 'api', 'favicon.ico')));
