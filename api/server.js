@@ -23,6 +23,8 @@ app.use(cors());
 
 db.sequelize.sync({ force: true }).then(() => {
 	console.log("Drop and re-sync db.");
+}).catch((error) => {
+	console.error('Unable to connect to the database: ', error);
 });
 
 // Set up static

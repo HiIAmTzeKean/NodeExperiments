@@ -17,6 +17,13 @@ const db = {Sequelize, sequelize};
 
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
-db.User = require("./tutorial.model.js")(sequelize, Sequelize);
+db.User = require("./user.model.js")(sequelize, Sequelize);
+db.Schedule = require("./schedule.model.js")(sequelize,Sequelize);
+
+db.sequelize.authenticate().then(() => {
+	console.log('Connection has been established successfully.');
+}).catch((error) => {
+	console.error('Unable to connect to the database: ', error);
+});
 
 module.exports = db;
