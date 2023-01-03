@@ -1,13 +1,13 @@
 // Importing express
-const express = require('express');
-const dotenv = require('dotenv');
-const path = require("path");
+import express from 'express';
+import dotenv from 'dotenv';
+import path from "path";
 
 // Set up middleware
-const logger = require("morgan");
-const favicon = require("serve-favicon");
-const cors = require("cors");
-const db = require(path.join(__dirname, 'models', "index.js"));
+import logger from "morgan";
+import favicon from "serve-favicon";
+import cors from "cors";
+import db from "./models/index.js";
 
 // Config environment
 dotenv.config();
@@ -17,17 +17,17 @@ const app = express();
 const port = process.env.PORT;
 
 // config middleware
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
+app.use(favicon("./public/favicon.ico"))
 app.use(logger("dev"))
 app.use(cors());
 
 // Set up static
-app.use("/", express.static(path.join(__dirname, 'api', 'favicon.ico')));
+app.use("/", express.static("./public/favicon.ico"));
 
-var userRouter = require("./routes/user");
+import userRouter from "./routes/user.js";
 app.use("/api/v1/user/", userRouter);
 
-var scheduleRouter = require("./routes/schedule");
+import scheduleRouter from "./routes/schedule.js";
 app.use("/api/v1/schedule/", scheduleRouter);
 
 app.all("*", (req,res) => {

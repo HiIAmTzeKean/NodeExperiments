@@ -1,6 +1,8 @@
-const dbConfig = require("../config/db.config.js");
-const Sequelize = require("sequelize");
-const dotenv = require('dotenv');
+import dbConfig from "../config/db.config.js";
+import Sequelize from "sequelize";
+import dotenv from 'dotenv';
+import User from "./user.model.js";
+import Schedule from "./schedule.model.js";
 dotenv.config();
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -20,8 +22,8 @@ const db = {Sequelize, sequelize};
 const dbInit = async() =>  {
 	db.Sequelize = Sequelize;
 	db.sequelize = sequelize;
-	db.User = require("./user.model.js")(sequelize, Sequelize);
-	db.Schedule = require("./schedule.model.js")(sequelize,Sequelize);
+	db.User = User(sequelize, Sequelize);
+	db.Schedule = Schedule(sequelize,Sequelize);
 
 
 	db.sequelize.authenticate().then(() => {
@@ -48,4 +50,4 @@ if (process.env.environment == "dev") {
 	})();
 }
 
-module.exports = db;
+export default db;

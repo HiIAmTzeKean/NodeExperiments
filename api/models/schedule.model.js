@@ -9,5 +9,4 @@ const Schedule = (sequelize, Sequelize) => {
 	});
 }
 
-
-module.exports = Schedule;
+export default Schedule;

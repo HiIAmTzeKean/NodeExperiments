@@ -2,6 +2,7 @@
 	"name": "nodejs-website",
 	"version": "0.1.0",
 	"author": "Ng Tze Kean",
+	"type": "module",
 	"dependencies": {
 		"cors": "^2.8.5",
 		"dotenv": "^16.0.3",

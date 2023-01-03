@@ -1,7 +1,8 @@
-var express = require("express");
-var router = express.Router();
-const path = require("path");
-const db = require(path.join(__dirname, "..", "models", "index.js"));
+import express from 'express';
+import path from "path";
+import db from "../models/index.js";
+// var express = require("express");
+const router = express.Router();
 
 router.get("/", function(req, res, next) {
 	db.Schedule.findAll().then(res => {
@@ -16,4 +17,4 @@ router.get("/", function(req, res, next) {
 	return res.status(200).send("Done");
 })
 
-module.exports = router;
+export default router
