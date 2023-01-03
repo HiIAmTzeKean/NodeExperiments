@@ -1,12 +1,19 @@
-const User = (sequelize, Sequelize) => {
-	return sequelize.define("user", {
+const User = (db, Sequelize) => {
+	let table = db.sequelize.define("user", {
+		id : {
+			type: Sequelize.INTEGER,
+			autoIncrement: true,
+			primaryKey: true
+		},
 		name: {
 			type: Sequelize.STRING
 		},
-		points: {
+		point: {
 			type: Sequelize.INTEGER
 		}
 	});
+	
+	return table;
 }
 
 export default User;
