@@ -8,7 +8,7 @@ import logger from "morgan";
 import favicon from "serve-favicon";
 import cors from "cors";
 import db from "./models/index.js";
-
+import initData from './public/data.js';
 // Config environment
 dotenv.config();
 
@@ -29,6 +29,10 @@ app.use("/api/v1/user/", userRouter);
 
 import scheduleRouter from "./routes/schedule.js";
 app.use("/api/v1/schedule/", scheduleRouter);
+
+app.get("/", (req, res)=>{
+	initData();
+})
 
 app.all("*", (req,res) => {
 	res.status(404).send("Resource not found");
